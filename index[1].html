@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A practical Catholic Mass and altar-server learning hub with a glossary, printable name card and rotating quiz.">
+<title>Altar Server Hub | Learn, Serve, Grow</title>
+<style>
+:root{--navy:#10243a;--blue:#1d4666;--gold:#e6b85c;--cream:#fffaf0;--ink:#202a35;--muted:#667386;--line:#e4e8ed;--white:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--cream);color:var(--ink);line-height:1.65}
+header{background:linear-gradient(130deg,var(--navy),var(--blue));color:white;padding:28px 18px 34px;border-bottom:5px solid var(--gold)}
+.wrap{max-width:1120px;margin:auto;padding:0 18px}.brand{font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-weight:bold}
+h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.1;margin:12px 0}header p{max-width:760px;color:#e6edf5}
+nav{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}nav a{color:white;text-decoration:none;border:1px solid #718194;padding:8px 12px;border-radius:30px}nav a:hover{background:var(--gold);color:var(--navy)}
+main{padding:28px 0 55px}section{background:white;border:1px solid #e9e4d8;border-radius:16px;padding:clamp(17px,3vw,26px);margin:0 0 22px;box-shadow:0 5px 18px #14243a0b}
+h2{color:var(--navy);margin-top:0}h3{margin-bottom:6px;color:var(--navy)}.small{color:var(--muted);font-size:.94rem}
+input,select,textarea,button{font:inherit;border-radius:9px;padding:10px 12px;border:1px solid #c9d0d8}input,select,textarea{max-width:100%;width:100%;background:white}button{cursor:pointer;background:var(--navy);color:white;border:0;font-weight:bold}button:hover{background:#23486d}button.secondary{background:#eaf0f5;color:var(--navy);border:1px solid #c9d4df}button.secondary:hover{background:#dce6ef}.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}.field label{display:block;font-weight:bold;margin-bottom:5px}
+.searchbar{margin:10px 0 18px}.terms{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:12px}.term{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fff}.term h3{margin-top:0;font-size:1.05rem}.term p{margin:0}.tag{font-size:.75rem;background:#f8edcf;color:#60440d;border-radius:20px;padding:3px 8px;display:inline-block;margin-bottom:7px}
+.namecard{background:linear-gradient(135deg,#10243a,#1d4666);color:white;border:3px solid var(--gold);border-radius:16px;padding:24px;text-align:center;max-width:580px;margin:18px auto}.namecard .cross{font-size:2rem;color:var(--gold)}.namecard h3{color:white;font-size:1.7rem;margin:6px}.namecard p{margin:4px}.namecard .motto{color:#f6d98f;font-style:italic;overflow-wrap:anywhere}
+.question{padding:15px;border:1px solid var(--line);border-radius:12px;margin:12px 0}.question p{font-weight:bold;margin-top:0}.question label{display:block;padding:5px 0;cursor:pointer}.result{font-weight:bold;margin-top:14px}.notice{background:#fff7e2;padding:12px;border-radius:10px;color:#624a17;border-radius:10px}.pill{display:inline-block;border-radius:99px;background:#edf3f7;color:#26425a;padding:4px 10px;font-size:.85rem}
+footer{background:#0b1928;color:#d9e1eb;padding:24px;text-align:center}footer a{color:#f6d98f}.hidden{display:none!important}
+@media print{body{background:white}.no-print,header,nav,main>section:not(#namecard-section),footer{display:none!important}main{padding:0}.wrap{max-width:none;padding:0}.namecard{margin:0 auto;print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+
+.study-panel{margin:22px 0;padding:20px;background:#fff;border:1px solid var(--line);border-radius:14px}.study-panel h3{margin-top:18px;color:var(--navy)}.season-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}.season,.colour{border:1px solid var(--line);border-radius:10px;padding:13px;background:#fffdf8}.season h4,.colour h4{margin:0 0 5px;color:var(--blue)}.season p,.colour p{margin:5px 0}.colour-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px}.colour{display:flex;gap:12px;align-items:flex-start}.swatch{display:block;flex:0 0 30px;width:30px;height:30px;border-radius:50%;margin-top:3px}.study-panel ul{padding-left:22px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="brand">Learn • Prepare • Serve</div>
+    <h1>Altar Server Hub</h1>
+    <p>A practical learning space for Catholic Mass, altar-server vocabulary, sacred objects, liturgical seasons, serving roles and good habits. Learn at your own pace and always follow the instructions of your priest, deacon or parish coordinator.</p>
+    <nav aria-label="Main navigation">
+      <a href="#welcome">Welcome</a><a href="#glossary">Mass & Server Glossary</a><a href="#namecard-section">My Name Card</a><a href="#quiz">Quiz</a><a href="#serving-well">Serving Well</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<section id="welcome">
+<h2>Welcome, altar server!</h2>
+<p>An altar server helps the community worship reverently and supports the priest and deacon during the liturgy. This guide covers many common Catholic terms, but parish customs and approved liturgical practice can vary. Ask your parish leader whenever you are unsure.</p>
+<div class="row">
+<div><span class="pill">Searchable glossary</span><p class="small">Find terms by name, category or meaning.</p></div>
+<div><span class="pill">Personal name card</span><p class="small">Create a card with your name and parish details, then print or save it as a PDF.</p></div>
+<div><span class="pill">Rotating quiz</span><p class="small">A fresh selection of questions appears whenever the page is loaded or refreshed.</p></div>
+</div>
+</section>
+
+<section id="glossary">
+<h2>Mass & Altar-Server Glossary</h2>
+<p class="small">This is a broad study glossary, not literally every term used in every rite or parish. Search any word or phrase below.</p>
+<div class="searchbar"><label for="search"><strong>Search the glossary</strong></label><input id="search" type="search" placeholder="Try “chalice”, “Eucharist”, “colour”, “procession”…"></div>
+<div class="study-panel" id="liturgical-year">
+<h3>The Liturgical Year: seasons and meaning</h3>
+<p>The Roman Catholic liturgical year begins with the First Sunday of Advent. Dates vary from year to year. The calendar below gives the usual order and purpose of the seasons.</p>
+<div class="season-grid">
+<article class="season"><h4>1. Advent</h4><p><strong>Usual colour:</strong> Violet or purple; rose on the Third Sunday (Gaudete Sunday) where used.</p><p>A season of hope, prayer and preparation for Christ’s coming, both at Christmas and at the end of time. The Advent wreath is a common devotion.</p></article>
+<article class="season"><h4>2. Christmas Time</h4><p><strong>Usual colour:</strong> White or gold.</p><p>Celebrates the birth of Jesus and the mystery of God becoming human. It includes Christmas, the Holy Family, Mary Mother of God, Epiphany and the Baptism of the Lord, according to the calendar.</p></article>
+<article class="season"><h4>3. Ordinary Time (first part)</h4><p><strong>Usual colour:</strong> Green.</p><p>Focuses on Jesus’ public ministry and growth in Christian discipleship. It runs after the Baptism of the Lord until before Ash Wednesday.</p></article>
+<article class="season"><h4>4. Lent</h4><p><strong>Usual colour:</strong> Violet or purple; rose may be used on the Fourth Sunday (Laetare Sunday).</p><p>A 40-day season of prayer, fasting and almsgiving preparing for Easter. Ash Wednesday begins Lent. Alleluia is not used in the liturgy during Lent.</p></article>
+<article class="season"><h4>5. Sacred Paschal Triduum</h4><p><strong>Usual colours:</strong> White for the Mass of the Lord’s Supper; red on Good Friday; white or gold at the Easter Vigil.</p><p>The three-day celebration from the evening Mass of the Lord’s Supper on Holy Thursday through Easter Sunday. It commemorates Jesus’ Passion, death and Resurrection. Good Friday is not a Mass.</p></article>
+<article class="season"><h4>6. Easter Time</h4><p><strong>Usual colour:</strong> White or gold; red on Pentecost.</p><p>Fifty days celebrating the Resurrection, from Easter Sunday through Pentecost. The Ascension is celebrated during this season on the date set by the local calendar.</p></article>
+<article class="season"><h4>7. Ordinary Time (second part)</h4><p><strong>Usual colour:</strong> Green.</p><p>Resumes after Pentecost and continues until the beginning of Advent. The Church reflects on Christ’s teaching and the life of discipleship.</p></article>
+</div>
+<h3>Liturgical colours and their significance</h3>
+<p>Colours are used on vestments and other liturgical items to express the character of a celebration. The proper colour can depend on the feast, rite and local calendar; follow your parish’s approved practice.</p>
+<div class="colour-grid">
+<article class="colour"><span class="swatch" style="background:#fff;border:1px solid #bbb"></span><div><h4>White</h4><p>Joy, light, purity and resurrection. Common at Christmas and Easter, and for celebrations of the Lord (other than his Passion), Mary, angels and saints who were not martyrs.</p></div></article>
+<article class="colour"><span class="swatch" style="background:#d7b45b"></span><div><h4>Gold</h4><p>Festive splendour. In places where permitted, gold or silver vestments may be used for especially solemn celebrations in place of other colours, except violet or black where those are prescribed.</p></div></article>
+<article class="colour"><span class="swatch" style="background:#b51f32"></span><div><h4>Red</h4><p>The Holy Spirit’s fire and the blood of Christ and martyrs. Used on Palm Sunday, Good Friday, Pentecost, and celebrations of martyrs.</p></div></article>
+<article class="colour"><span class="swatch" style="background:#68429b"></span><div><h4>Violet / Purple</h4><p>Preparation, penance and conversion. Used during Advent and Lent; it may also be used for Masses for the Dead where permitted.</p></div></article>
+<article class="colour"><span class="swatch" style="background:#28784a"></span><div><h4>Green</h4><p>Hope, life and growth in faith. Used during Ordinary Time.</p></div></article>
+<article class="colour"><span class="swatch" style="background:#f2a4b7"></span><div><h4>Rose</h4><p>A sign of joy within a penitential season. May be used on the Third Sunday of Advent (Gaudete) and Fourth Sunday of Lent (Laetare).</p></div></article>
+<article class="colour"><span class="swatch" style="background:#222"></span><div><h4>Black</h4><p>A sign of mourning. It may be used at Masses for the Dead where permitted by local liturgical norms; white or violet is also commonly used.</p></div></article>
+<article class="colour"><span class="swatch" style="background:#4d74c8"></span><div><h4>Blue</h4><p>Often associated devotionally with the Blessed Virgin Mary, but it is not a universal Roman Rite liturgical colour. It may be used only where a particular indult or local permission allows it.</p></div></article>
+</div>
+<h3>How the liturgical years are labelled</h3>
+<ul><li><strong>Sunday readings — Years A, B and C:</strong> the Sunday Gospel cycle generally highlights Matthew in Year A, Mark in Year B and Luke in Year C; John appears especially during Easter and other seasons. The cycle repeats every three years.</li><li><strong>Weekday readings — Years I and II:</strong> weekday readings in Ordinary Time generally follow a two-year cycle. Year I is used in odd-numbered calendar years and Year II in even-numbered years, with liturgical-calendar details observed.</li><li><strong>Solemnities, feasts and memorials:</strong> celebrations have different ranks. The rank helps determine which prayers, readings and liturgical rules apply.</li></ul>
+<p class="small"><strong>Server reminder:</strong> do not decide the colour from the season alone. A particular solemnity, funeral, wedding or local celebration may have its own rules. Check the parish sacristy calendar or ask the priest/coordinator.</p>
+</div>
+<div class="row" style="margin-bottom:15px">
+<div class="field"><label for="category">Filter by category</label><select id="category"><option value="">All categories</option></select></div>
+<div class="field"><label for="sort">Order</label><select id="sort"><option value="alpha">A–Z</option><option value="category">Category</option></select></div>
+</div>
+<p id="term-count" class="small" aria-live="polite"></p>
+<div id="terms" class="terms"></div>
+</section>
+
+<section id="namecard-section">
+<h2>Create your altar-server name card</h2>
+<p>Enter your details and press <strong>Create my card</strong>. Your card will appear below. You can print it or choose “Save as PDF” in the print window.</p>
+<form id="card-form" class="no-print">
+<div class="row">
+<div class="field"><label for="fullName">Full name *</label><input id="fullName" name="fullName" required maxlength="70" placeholder="Enter your name"></div>
+<div class="field"><label for="parish">Parish / church</label><input id="parish" name="parish" maxlength="100" placeholder="Your parish name"></div>
+<div class="field"><label for="role">Role</label><select id="role" name="role"><option>Altar Server</option><option>Senior Altar Server</option><option>Master of Ceremonies</option><option>Ceremonial Team Member</option><option>Altar-Server Candidate</option></select></div>
+<div class="field"><label for="motto">Motto (optional)</label><input id="motto" name="motto" maxlength="100" placeholder="e.g. Serve with joy"></div>
+</div>
+<p><button type="submit">Create my card</button> <button class="secondary" type="button" id="print-card">Print / Save as PDF</button></p>
+</form>
+<div id="namecard" class="namecard" aria-live="polite">
+<div class="cross">✠</div><div style="color:#f6d98f;font-weight:bold;letter-spacing:.08em">ALTAR SERVER</div>
+<h3 id="card-name">Your Name Here</h3><p id="card-parish">Your Parish</p><p id="card-role">Altar Server</p><p id="card-motto" class="motto">“Serve with joy and reverence.”</p>
+</div>
+<p class="small">Privacy note: this demo creates the card in your browser only. It does not send or store your details on a server or submit them to your parish. Avoid entering private information.</p>
+</section>
+
+<section id="quiz">
+<h2>Altar-Server Quiz</h2>
+<p class="small">Each quiz has 10 questions selected randomly from a large question bank. This browser remembers which questions have appeared and avoids repeats until the bank is exhausted. Press “New quiz” for another set.</p>
+<div id="quiz-area"></div>
+<button id="check-quiz" type="button">Check my answers</button> <button class="secondary" id="new-quiz" type="button">New quiz</button>
+<div id="quiz-result" class="result" aria-live="polite"></div>
+<form id="quiz-submit-form" class="no-print" method="POST" action="https://formsubmit.co/YOUR_EMAIL@example.com">
+  <h3>Submit your quiz answers</h3>
+  <p class="small">The website owner must replace the placeholder email in the website code with their own receiving email and verify it once with FormSubmit.</p>
+  <div class="row">
+    <div class="field"><label for="quiz-student-name">Your name *</label><input id="quiz-student-name" name="Learner name" required maxlength="70" placeholder="Enter your name"></div>
+    <div class="field"><label for="quiz-student-email">Your email (optional)</label><input id="quiz-student-email" name="Learner email" type="email" maxlength="120" placeholder="If you want a reply"></div>
+  </div>
+  <input type="hidden" name="_subject" value="Altar Server Hub quiz submission">
+  <input type="hidden" name="_template" value="table">
+  <input type="hidden" name="Quiz score" id="submission-score">
+  <input type="hidden" name="Questions and answers" id="submission-answers">
+  <p><button id="submit-answers" type="submit">Submit answers to the owner</button></p>
+  <p class="small">Quiz submissions go through FormSubmit to the configured owner email. Do not enter private or sensitive information.</p>
+</form>
+</section>
+
+<section id="serving-well">
+<h2>Good habits for serving Mass</h2>
+<ul>
+<li>Arrive early enough to prepare and receive instructions.</li>
+<li>Wear the vestments your parish has assigned and make sure they are neat.</li>
+<li>Know your place, route and role before Mass begins.</li>
+<li>Walk calmly, stand attentively and avoid unnecessary movement or talking.</li>
+<li>Handle sacred vessels and books carefully, as your parish has taught you.</li>
+<li>Follow the priest, deacon and parish coordinator rather than guessing what to do.</li>
+<li>Keep phones away during the liturgy unless an authorised role requires one.</li>
+<li>If you make a mistake, stay calm and continue reverently.</li>
+<li>Learn the responses and prayers used in your parish.</li>
+<li>Remember: serving is a ministry of prayer, humility and helping the assembly worship.</li>
+</ul>
+<div class="notice"><strong>Important:</strong> This website is a study aid, not an official liturgical rulebook. Follow the Roman Missal, other approved liturgical books, diocesan guidance and your parish’s instructions.</div>
+</section>
+</main>
+<footer><p><strong>Altar Server Hub</strong> — Learn, prepare and serve with reverence.</p><p class="small">Educational resource. Local customs and approved liturgical practices may differ.</p></footer>
+<script>
+const glossary = [
+["Alb","Vestments","A long white garment worn by ordained ministers and some other liturgical ministers."],
+["Ambo","Church spaces","The designated place from which the Scripture readings, Psalm and sometimes the homily are proclaimed."],
+["Aspergillum","Objects & vessels","A sprinkler used to sprinkle holy water."],
+["Asperges","Rites & actions","A rite or action involving the sprinkling of the assembly with holy water, especially in certain settings."],
+["Assembly","People & roles","The people gathered to worship."],
+["Baptismal font","Church spaces","A vessel or structure used for celebrating Baptism."],
+["Boat / incense boat","Objects & vessels","A small container that holds grains of incense before they are placed in the thurible."],
+["Book of the Gospels","Books","The liturgical book containing Gospel readings."],
+["Burse","Objects & vessels","A flat, usually square case used to carry or protect the corporal."],
+["Candlebearer","People & roles","A server who carries a liturgical candle or processional candle."],
+["Candlelighter","People & roles","A person assigned to light or extinguish candles according to parish practice."],
+["Cassock","Vestments","A long garment worn by clergy and sometimes servers beneath a surplice or cotta."],
+["Cathedra","Church spaces","The bishop’s official chair in the cathedral."],
+["Chalice","Objects & vessels","The cup used for the wine that becomes the Precious Blood during the Eucharistic Prayer."],
+["Chasuble","Vestments","The principal outer vestment worn by a priest celebrating Mass."],
+["Ciborium","Objects & vessels","A covered vessel used to hold consecrated hosts."],
+["Collect","Parts of Mass","The opening prayer that gathers the intentions of the assembly."],
+["Corporal","Altar linens","A square white linen placed on the altar beneath the sacred vessels."],
+["Credence table","Church spaces","A side table where items needed for the liturgy are placed before use."],
+["Cruets","Objects & vessels","Small vessels that hold water and wine for Mass."],
+["Cotta","Vestments","A short white garment similar to a surplice, often worn over a cassock."],
+["Dalmat ic / Dalmatic","Vestments","The distinctive outer vestment worn by a deacon."],
+["Deacon","People & roles","An ordained minister who assists the bishop and priest and has specific liturgical roles."],
+["Dismissal","Parts of Mass","The concluding sending forth of the assembly at the end of Mass."],
+["Epiclesis","Eucharist","The invocation of the Holy Spirit in the Eucharistic Prayer."],
+["Eucharist","Faith & worship","The sacrament celebrated at Mass, in which the Church receives the Body and Blood of Christ under the appearances of bread and wine."],
+["Eucharistic Prayer","Parts of Mass","The central prayer of thanksgiving and consecration at Mass."],
+["Gospel","Books & Scripture","The proclamation of a passage from one of the four Gospels."],
+["Genuflection","Postures & gestures","A reverent bending of one knee, made according to liturgical circumstances and local instruction."],
+["Humeral veil","Vestments","A long cloth worn over the shoulders and arms when carrying the monstrance or other sacred vessel in certain rites."],
+["Holy water","Objects & vessels","Water blessed for use in blessings and other rites."],
+["Host","Eucharist","The bread used for the Eucharist; after consecration, it is the Body of Christ."],
+["Incense","Objects & vessels","A fragrant resin burned during certain liturgies as a sign of honour, prayer and reverence."],
+["Incensation","Rites & actions","The action of honouring a person or sacred object with incense."],
+["Introit / Entrance chant","Parts of Mass","The chant or song accompanying the entrance procession."],
+["Kyrie","Parts of Mass","The prayer asking the Lord for mercy, often sung or spoken after the introductory rites."],
+["Lavabo","Rites & actions","The washing of the celebrant’s hands during the preparation of the gifts."],
+["Lectionary","Books","The liturgical book containing readings from Scripture for Mass."],
+["Liturgical colour","Seasons & colours","The colour of vestments and other hangings associated with a liturgical day or season."],
+["Liturgical year","Seasons & colours","The annual cycle of feasts, seasons and celebrations in the Church."],
+["Liturgy of the Eucharist","Parts of Mass","The part of Mass that includes preparation of the gifts, the Eucharistic Prayer and Communion."],
+["Liturgy of the Word","Parts of Mass","The part of Mass focused on Scripture readings, the Psalm, the Gospel and the homily."],
+["Master of Ceremonies","People & roles","A person who helps coordinate the order and movement of a liturgical celebration."],
+["Mitre","Vestments","The ceremonial headwear worn by a bishop on certain occasions."],
+["Monstrance","Objects & vessels","A vessel used to display the Blessed Sacrament, especially during Eucharistic adoration."],
+["Missal","Books","A liturgical book containing the prayers and instructions for celebrating Mass."],
+["Narthex","Church spaces","An entrance area or vestibule of a church."],
+["Pall","Altar linens","A stiffened square cover placed over the chalice."],
+["Paschal candle","Objects & vessels","A large candle blessed and lit at Easter, used during the Easter season and certain celebrations."],
+["Paten","Objects & vessels","A plate or shallow dish used for the bread or host at Mass."],
+["Presider’s chair","Church spaces","The chair used by the priest who presides at the liturgy."],
+["Processional cross","Objects & vessels","A cross carried at the head of a procession."],
+["Procession","Rites & actions","An ordered movement of ministers and sometimes the assembly during a liturgy."],
+["Purificator","Altar linens","A small linen used to wipe the chalice and other sacred vessels as directed."],
+["Pyx","Objects & vessels","A small container used to carry the Eucharist to people who cannot attend Mass."],
+["Roman Missal","Books","The liturgical book containing the prayers and rubrics for the celebration of Mass in the Roman Rite."],
+["Sacramentary","Books","A historical or regional term for a book of presidential prayers; the current Roman Rite uses the Roman Missal."],
+["Sacristan","People & roles","A person who prepares and cares for the church’s liturgical books, vessels, vestments and other items."],
+["Sacristy","Church spaces","A room where vestments and liturgical items are kept and ministers prepare for worship."],
+["Sacrarium","Church spaces","A special sink, usually in the sacristy, that drains directly into the ground and is used for certain sacred purposes."],
+["Sanctuary","Church spaces","The part of the church where the altar and other principal liturgical furnishings are located."],
+["Sanctuary lamp","Objects & vessels","A lamp near the tabernacle indicating the presence of the Blessed Sacrament, according to church practice."],
+["Sequence","Parts of Mass","A liturgical hymn used on certain solemnities and feasts."],
+["Server","People & roles","A lay minister who assists with practical tasks during liturgy according to the parish’s training and rules."],
+["Sign of peace","Rites & actions","A gesture of peace exchanged at the appointed point in Mass according to local practice."],
+["Solemnity","Seasons & colours","The highest rank of liturgical celebration in the Roman Rite."],
+["Stole","Vestments","A long strip of vestment worn by ordained ministers; the way it is worn differs by ministry."],
+["Stoup","Objects & vessels","A small vessel or basin for holy water, often near a church entrance."],
+["Surplice","Vestments","A white outer garment worn over a cassock by some ministers."],
+["Tabernacle","Church spaces","A secure place where the Blessed Sacrament is reserved."],
+["Thurible / censer","Objects & vessels","A metal vessel suspended on chains in which incense is burned."],
+["Thurifer","People & roles","The server who carries the thurible during a liturgy."],
+["Transept","Church spaces","The crosswise part of a church that intersects the nave in a cruciform plan."],
+["Veneration","Rites & actions","An act of honour or reverence, distinct from the adoration owed to God alone."],
+["Vesture / vestments","Vestments","Garments worn by clergy and other ministers for liturgical celebrations."],
+["Viaticum","Sacraments & rites","Holy Communion given to a person near death."],
+["Ambo book stand","Books & furnishings","A stand that supports the lectionary or Book of the Gospels at the ambo, where used."],
+["Altar","Church spaces","The table at which the Eucharistic sacrifice is celebrated."],
+["Altar cloth","Altar linens","The cloth placed on the altar according to liturgical requirements."],
+["Altar cross","Objects & vessels","A cross placed on or near the altar when required."],
+["Blessing","Sacraments & rites","A prayer asking God’s favour upon people or things."],
+["Bishop","People & roles","A successor of the apostles who leads a diocese and has particular liturgical responsibilities."],
+["Book of the Chair","Books","A descriptive term sometimes used for a book containing prayers for the presider; the exact book depends on local use."],
+["Collecting basket","Objects & vessels","A basket or container used to receive offerings from the assembly."],
+["Communion","Eucharist","The reception of the Body and Blood of Christ in the Eucharist."],
+["Concelebration","Parts of Mass","A Mass celebrated by more than one priest together."],
+["Concluding rites","Parts of Mass","The final prayers, blessing and dismissal at Mass."],
+["Consecration","Eucharist","The part of the Eucharistic Prayer by which the bread and wine become the Body and Blood of Christ."],
+["Epistle","Books & Scripture","A term often used for a New Testament letter; historically also used for the reading before the Gospel."],
+["Feast","Seasons & colours","A rank of liturgical celebration below a solemnity and above a memorial."],
+["Ferial day","Seasons & colours","A weekday without a higher-ranking feast or solemnity."],
+["Holy Thursday","Seasons & colours","The Thursday of Holy Week, when the Church celebrates the Mass of the Lord’s Supper."],
+["Incarnation","Faith & worship","The Christian belief that the Son of God became human in Jesus Christ."],
+["Kneeler","Church furnishings","A padded or wooden support for kneeling."],
+["Memorial","Seasons & colours","A liturgical celebration commemorating a saint or event at the memorial rank."],
+["Nave","Church spaces","The main area of a church where the congregation gathers."],
+["Oblation","Eucharist","An offering made to God; in Mass the term can refer to the offering in the Eucharistic Prayer."],
+["Ordinary Time","Seasons & colours","The liturgical seasons outside the special seasons of Advent, Christmas, Lent and Easter."],
+["Sanctus bell","Objects & vessels","A bell or set of bells rung at certain moments according to parish custom."],
+["Stations of the Cross","Devotions","A devotion recalling events of Jesus’ Passion."],
+["Vigil","Seasons & colours","A liturgical watch or celebration on the eve of a feast, or a special night-time celebration."],
+["Advent","Seasons & colours","The season of preparation for the celebration of Christ’s birth and of hopeful expectation of his coming."],
+["Christmas Time","Seasons & colours","The liturgical season celebrating the birth of Jesus and related mysteries."],
+["Lent","Seasons & colours","A season of prayer, fasting and almsgiving in preparation for Easter."],
+["Easter Triduum","Seasons & colours","The three-day liturgical celebration of the Passion, Death and Resurrection of the Lord, beginning with the Mass of the Lord’s Supper."],
+["Easter Season","Seasons & colours","The season celebrating Christ’s Resurrection, from Easter Sunday through Pentecost."],
+["Pentecost","Seasons & colours","The celebration of the coming of the Holy Spirit upon the disciples."],
+["Palm Sunday","Seasons & colours","The Sunday beginning Holy Week, commemorating Jesus’ entry into Jerusalem."],
+["Ash Wednesday","Seasons & colours","The day that begins Lent in the Roman Rite."],
+["Chrism","Sacraments & rites","Oil blessed by a bishop and used in certain sacraments and rites."],
+["Oil of the Sick","Sacraments & rites","Oil used in the Anointing of the Sick."],
+["Oil of Catechumens","Sacraments & rites","Oil used in certain baptismal rites."],
+["Baptism","Sacraments & rites","The sacrament through which a person is reborn in Christ and initiated into the Church."],
+["Confirmation","Sacraments & rites","The sacrament that strengthens the grace of Baptism through the gift of the Holy Spirit."],
+["Reconciliation","Sacraments & rites","The sacrament in which sins are confessed and absolution is received."],
+["Anointing of the Sick","Sacraments & rites","A sacrament for the spiritual strengthening of people seriously ill or weakened by age."],
+["Marriage","Sacraments & rites","The sacrament by which a baptized man and woman establish a lifelong covenant according to Catholic teaching."],
+["Holy Orders","Sacraments & rites","The sacrament through which men are ordained as bishops, priests or deacons."],
+["Kneeling","Postures & gestures","A posture of prayer and reverence used at appointed moments."],
+["Bowing","Postures & gestures","A gesture of reverence; the kind of bow depends on the person or sacred object and local instruction."],
+["Sign of the Cross","Postures & gestures","A Christian prayer gesture made in the name of the Father, Son and Holy Spirit."],
+["Standing","Postures & gestures","A posture of prayer and attention used at many points during Mass."],
+["Sitting","Postures & gestures","A posture used for listening and reflection at appointed times."],
+["Silence","Postures & gestures","A meaningful pause for prayer, listening or reflection in the liturgy."],
+["Sanctuary steps","Church spaces","Steps leading to the sanctuary in churches that have them."],
+["Nave aisle","Church spaces","A passage through the nave used by the assembly and processions."],
+["Roman Rite","Faith & worship","The liturgical tradition used by the Latin Church in many parts of the world."],
+["Liturgy","Faith & worship","The public worship of the Church."],
+["Rubrics","Books & instructions","The directions printed in liturgical books that guide how a celebration is carried out."],
+["Liturgical minister","People & roles","A person who has an assigned service or role in the liturgy."],
+["Acolyte","People & roles","An instituted ministry in the Catholic Church; in some places the term is also used informally for servers."],
+["Lector","People & roles","A minister appointed or assigned to proclaim Scripture readings other than the Gospel."],
+["Extraordinary minister of Holy Communion","People & roles","A lay person authorised to assist with distribution of Communion when needed under Church norms."],
+["Celebrant","People & roles","The priest who celebrates Mass; at a concelebrated Mass, several priests concelebrate."],
+["Presider","People & roles","The minister who leads a liturgical celebration."],
+["Bells","Objects & vessels","Bells rung at certain moments during Mass according to the parish’s custom."],
+["Boat bearer","People & roles","A server who carries the incense boat and assists the thurifer."],
+["Cross bearer","People & roles","A server who carries the processional cross."],
+["Book bearer","People & roles","A server who carries or presents a liturgical book as directed."],
+["Gift bearers","People & roles","Members of the assembly who bring the gifts to the altar during the preparation of the gifts."],
+["Liturgical calendar","Books & instructions","The calendar that lists liturgical days, seasons, feasts and readings."],
+["Preface","Parts of Mass","The opening part of the Eucharistic Prayer leading to the Sanctus."],
+["Sanctus","Parts of Mass","The “Holy, Holy, Holy” acclamation sung or spoken during the Eucharistic Prayer."],
+["Memorial acclamation","Parts of Mass","The assembly’s acclamation after the institution narrative in the Eucharistic Prayer."],
+["Doxology","Parts of Mass","A short prayer of praise to God; the Great Amen follows the concluding doxology of the Eucharistic Prayer."],
+["Great Amen","Parts of Mass","The assembly’s concluding “Amen” to the Eucharistic Prayer."],
+["Our Father","Parts of Mass","The Lord’s Prayer, prayed before Communion."],
+["Fraction rite","Parts of Mass","The breaking of the consecrated bread before Communion."],
+["Agnus Dei","Parts of Mass","The “Lamb of God” litany during the fraction rite."],
+["Communion procession","Rites & actions","The orderly movement of the faithful to receive Holy Communion."],
+["Purification","Rites & actions","The reverent cleansing of sacred vessels after Communion, according to liturgical norms."],
+["Preparation of the gifts","Parts of Mass","The part of Mass in which the bread and wine are brought forward and the altar is prepared."],
+["Incensation of the altar","Rites & actions","The use of incense to honour the altar at appointed celebrations."],
+["Recessional","Rites & actions","The procession at the end of a celebration, where customary."],
+["Sanctuary lamp oil","Objects & vessels","Fuel used in a sanctuary lamp, managed by authorised parish personnel."],
+["Liturgical books","Books","Approved books used to celebrate the Church’s liturgy."],
+["Lectionary cycle","Books & Scripture","The pattern of Scripture readings assigned across Sundays and weekdays."],
+["Responsorial Psalm","Parts of Mass","The Psalm response between the first reading and the second reading, when there is one."],
+["Homily","Parts of Mass","A sermon that explains the readings or another aspect of the Christian life."],
+["Universal Prayer / Prayer of the Faithful","Parts of Mass","Intercessions offered for the Church and the world."],
+["Penitential Act","Parts of Mass","The part of the introductory rites in which the assembly acknowledges sin and asks for mercy."],
+["Gloria","Parts of Mass","The hymn of praise used on Sundays outside Advent and Lent and on certain solemnities and feasts."],
+["Creed","Parts of Mass","The profession of faith recited or sung on Sundays and certain solemnities."],
+["Entrance rites","Parts of Mass","The opening part of Mass, including the entrance, greeting and introductory prayers."],
+["Altar server cross","Objects & vessels","A cross carried by a server in procession, commonly called the processional cross."],
+["Votive candle","Objects & vessels","A candle lit as part of a devotional practice."],
+["Blessed Sacrament","Eucharist","The Eucharist, especially when reserved in the tabernacle or exposed for adoration."],
+["Eucharistic adoration","Devotions","Prayerful worship before the Blessed Sacrament exposed or reserved."],
+["Benediction","Rites & actions","A liturgical blessing, often associated with Eucharistic adoration."],
+["Monstrance veil","Vestments","A veil used by the minister in certain circumstances when handling the monstrance, according to the rite."],
+["Liturgical procession route","Rites & actions","The planned path ministers follow during entrances, Gospel processions or departures."],
+["Sacred vessels","Objects & vessels","Vessels used for the Eucharist, such as the chalice, paten and ciborium."],
+["Altar linens","Altar linens","Cloths used on the altar or with sacred vessels, including the corporal and purificator."],
+["Sanctuary etiquette","Serving practice","The reverent conduct expected in and around the sanctuary."],
+["Reverence","Serving practice","Respectful attention shown to God and to sacred actions, objects and spaces."],
+["Posture","Postures & gestures","The bodily position—standing, sitting, kneeling or bowing—used at appointed points in worship."],
+["Liturgical direction","Books & instructions","A direction in an approved liturgical book or from the authorised minister about how a rite is carried out."]
+  ["Ablution","Objects & vessels","The washing of the chalice and paten after Communion, usually by the priest, deacon or an authorised minister according to local practice."],
+  ["Acolyte","People & ministries","A formally instituted ministry that assists at the altar; in many parishes, “altar server” is used more broadly for trained servers."],
+  ["Advent","Liturgical seasons","The season of preparation and hope before Christmas, beginning the liturgical year."],
+  ["Alleluia","Words & responses","A Hebrew expression meaning “Praise the Lord”; omitted during Lent in the Roman Rite and returned with special joy at Easter."],
+  ["Amice","Vestments","A rectangular cloth some ministers put around the neck and shoulders under the alb, where this custom is used."],
+  ["Anamnesis","Parts of the Mass","The prayer after the consecration that recalls Christ’s Passion, Resurrection and Ascension."],
+  ["Anaphora","Parts of the Mass","Another name used in Eastern Christian traditions for the central Eucharistic prayer."],
+  ["Aspergillum","Objects & vessels","A sprinkler used to sprinkle holy water."],
+  ["Aspergillum bucket / aspersorium","Objects & vessels","A container that holds holy water for sprinkling."],
+  ["Baptismal font","Church spaces","A basin or structure used for the celebration of Baptism."],
+  ["Baptismal candle","Objects & symbols","A candle given or lit in connection with Baptism, symbolising Christ’s light."],
+  ["Biretta","Vestments","A square cap worn by some clergy in certain settings; servers should handle it only as directed."],
+  ["Book of the Gospels","Liturgical books","The book containing Gospel passages proclaimed at Mass, often carried in the entrance procession and placed on the altar."],
+  ["Candle bearer","Serving roles","A server who carries a liturgical candle, commonly alongside another candle bearer during processions or Gospel proclamation."],
+  ["Cantor","People & ministries","A person who leads the congregation’s singing or sings the Psalm and other designated music."],
+  ["Chasuble","Vestments","The outer vestment worn by a priest celebrating Mass."],
+  ["Chrism","Sacred oils","Oil consecrated by the bishop and used in Baptism, Confirmation, ordination and the dedication of churches and altars."],
+  ["Ciborium","Objects & vessels","A covered vessel used to hold consecrated hosts for Communion."],
+  ["Collect","Parts of the Mass","The opening prayer that gathers the intentions of the assembly."],
+  ["Communion","Sacraments & Eucharist","Receiving the Body and Blood of Christ under the forms used in the Catholic liturgy."],
+  ["Communion paten","Objects & vessels","A small plate or dish used by a minister in some places to help prevent the Eucharist from falling."],
+  ["Concelebration","Parts of the Mass","A Mass celebrated by more than one priest, with one presiding."],
+  ["Corporal","Altar linens","A square white linen spread on the altar beneath the sacred vessels during Mass."],
+  ["Credence table","Church spaces","A small table holding items prepared for Mass, such as cruets and lavabo bowl."],
+  ["Cruets","Objects & vessels","Small vessels that hold the water and wine used at Mass."],
+  ["Deacon","People & ministries","An ordained minister who may proclaim the Gospel, preach, assist the priest and perform other liturgical duties."],
+  ["Dismissal","Parts of the Mass","The concluding sending-forth of the assembly at the end of Mass."],
+  ["Doxology","Parts of the Mass","A short prayer of praise to God; the Great Amen follows the Eucharistic Prayer’s concluding doxology."],
+  ["Easter","Liturgical seasons","The celebration of Jesus Christ’s Resurrection and the central feast of the Christian year."],
+  ["Easter candle / Paschal candle","Objects & symbols","A large candle blessed at the Easter Vigil and used during Easter Time and at Baptisms and funerals."],
+  ["Easter Triduum","Liturgical seasons","The three-day celebration of the Lord’s Supper, the Passion and death of Christ, and the Resurrection."],
+  ["Epiclesis","Parts of the Mass","The invocation of the Holy Spirit in the Eucharistic Prayer."],
+  ["Epistle","Scripture & readings","A traditional term for a New Testament letter; in older usage, the reading before the Gospel."],
+  ["Eucharistic Prayer","Parts of the Mass","The central prayer of the Mass, including thanksgiving, the Sanctus, epiclesis, institution narrative, anamnesis, intercessions and doxology."],
+  ["Exposition","Eucharistic devotion","The placing of the Blessed Sacrament in a monstrance or ciborium for adoration, according to Church rules."],
+  ["Genuflection","Postures & gestures","Bending the right knee to the ground as a sign of reverence, especially toward the Blessed Sacrament when appropriate."],
+  ["Gospel acclamation","Parts of the Mass","The acclamation before the Gospel, normally Alleluia except during Lent."],
+  ["Holy water","Objects & symbols","Water blessed for liturgical use and reminders of Baptism."],
+  ["Host","Objects & vessels","The bread prepared for the Eucharist; after consecration, it is the Body of Christ."],
+  ["Incense boat","Objects & vessels","A small vessel that holds grains of incense for the thurible."],
+  ["Introit","Parts of the Mass","The entrance chant or antiphon used at the beginning of Mass."],
+  ["Kyrie","Words & responses","The Greek petition “Lord, have mercy,” used in the Penitential Act or another permitted form."],
+  ["Lavabo","Rites & actions","The washing of the priest’s hands during the preparation of the gifts; a server may assist with water and towel."],
+  ["Lavabo towel","Altar linens","A small towel used for the washing of the priest’s hands."],
+  ["Lectionary","Liturgical books","The book containing the Scripture readings appointed for Mass."],
+  ["Lector","People & ministries","A reader who proclaims readings from Scripture other than the Gospel."],
+  ["Liturgical year","Liturgical seasons","The annual cycle in which the Church celebrates the mysteries of Christ and the saints."],
+  ["Lunette","Objects & vessels","A small holder for the consecrated host inside a monstrance, where used."],
+  ["Memorial","Ranks of celebration","A liturgical celebration of a saint or mystery with a lower rank than a feast or solemnity."],
+  ["Miter","Vestments","A ceremonial head covering worn by a bishop at certain liturgies."],
+  ["Monstrance","Objects & vessels","A vessel designed to display the consecrated host for Eucharistic adoration."],
+  ["Narthex","Church spaces","An entrance or lobby area of a church, where present."],
+  ["Nave","Church spaces","The main area of the church where the congregation gathers."],
+  ["Ordinary Time","Liturgical seasons","The parts of the liturgical year outside Advent, Christmas, Lent and Easter Time; green is normally used."],
+  ["Pall","Objects & linens","A stiff square cover placed over the chalice; the word can also refer to a funeral cloth covering a coffin."],
+  ["Pallium","Vestments","A woollen band worn by the Pope and certain metropolitan archbishops; distinct from the chalice pall."],
+  ["Paschal Mystery","Faith & theology","Christ’s Passion, death, Resurrection and Ascension, through which salvation is accomplished."],
+  ["Paten","Objects & vessels","A plate used to hold the bread for the Eucharist."],
+  ["Penitential Act","Parts of the Mass","The part near the beginning of Mass in which the assembly acknowledges sin and asks for God’s mercy."],
+  ["Presider","People & ministries","The priest who leads the liturgical celebration."],
+  ["Processional cross","Objects & vessels","A cross carried at the head of a liturgical procession."],
+  ["Purificator","Altar linens","A small linen cloth used to purify the chalice and wipe sacred vessels."],
+  ["Pyx","Objects & vessels","A small container used to carry the Eucharist, especially to the sick."],
+  ["Recessional","Rites & actions","The procession at the end of Mass, where customary."],
+  ["Reredos","Church spaces","A decorative structure behind an altar, especially in some older churches."],
+  ["Rite","Rites & actions","An ordered set of prayers and actions used in worship or a sacrament."],
+  ["Roman Missal","Liturgical books","The book containing the prayers and instructions for celebrating Mass."],
+  ["Sacristy","Church spaces","The room where vestments and liturgical vessels are kept and where ministers prepare."],
+  ["Sanctuary","Church spaces","The part of the church where the altar, ambo and chair are located."],
+  ["Sanctus","Words & responses","The “Holy, Holy, Holy” sung or said near the beginning of the Eucharistic Prayer."],
+  ["Solemnity","Ranks of celebration","The highest rank of liturgical day, celebrating a major mystery of faith or an important saint."],
+  ["Stole","Vestments","A long band of vestment worn by ordained ministers; its manner of wearing differs for priests and deacons."],
+  ["Thurible","Objects & vessels","A metal censer suspended by chains, used to burn incense."],
+  ["Thurifer","Serving roles","The server who carries and assists with the thurible."],
+  ["Votive Mass","Mass types","A Mass celebrated for a particular devotion or intention when permitted by the liturgical calendar."],
+  ["White / gold","Liturgical colours","White or gold expresses festal joy, light and resurrection and is common at Christmas and Easter."],
+  ["Red","Liturgical colours","Red signifies the Holy Spirit’s fire and the blood of Christ and martyrs."],
+  ["Violet / purple","Liturgical colours","Violet signifies preparation and penance, especially in Advent and Lent."],
+  ["Green","Liturgical colours","Green is the normal colour for Ordinary Time and evokes growth and hope."],
+  ["Rose","Liturgical colours","Rose may be used on Gaudete Sunday and Laetare Sunday as a sign of joy."],
+  ["Black","Liturgical colours","Black may be used at Masses for the Dead where permitted by local norms."],
+  ["Blue","Liturgical colours","Blue is not a universal Roman Rite colour; it is permitted only in places with the relevant approval."],
+  ["Year A, B and C","Liturgical calendar","The three-year cycle of Sunday readings, generally associated with Matthew, Mark and Luke respectively."],
+  ["Year I and II","Liturgical calendar","The two-year cycle used for weekday readings in Ordinary Time."],
+  ["Gaudete Sunday","Liturgical calendar","The Third Sunday of Advent, when rose may be used and the liturgy expresses joyful expectation."],
+  ["Laetare Sunday","Liturgical calendar","The Fourth Sunday of Lent, when rose may be used as a sign of joy amid penance."],
+  ["Ash Wednesday","Liturgical calendar","The day that begins Lent; ashes are imposed as a sign of repentance."],
+  ["Palm Sunday","Liturgical calendar","The Sunday beginning Holy Week, commemorating Jesus’ entry into Jerusalem."],
+  ["Holy Thursday","Liturgical calendar","The Thursday evening Mass of the Lord’s Supper begins the Sacred Paschal Triduum."],
+  ["Good Friday","Liturgical calendar","The day the Church commemorates the Passion and death of Jesus; the Roman Rite does not celebrate Mass that day."],
+  ["Easter Vigil","Liturgical calendar","The night celebration of Christ’s Resurrection, including the blessing of the fire and Paschal candle, readings and initiation rites where scheduled."],
+  ["Pentecost","Liturgical calendar","The feast celebrating the gift of the Holy Spirit to the Church; red is used."],
+  ["Epiphany","Liturgical calendar","The solemnity celebrating Christ’s manifestation to the nations, especially remembered through the visit of the Magi."],
+  ["Benediction","Eucharistic devotion","A blessing with the Blessed Sacrament, normally following a period of Eucharistic adoration."],
+  ["Communion of saints","Faith & theology","The spiritual union of the faithful on earth, the souls being purified and the saints in heaven."],
+  ["Incensation","Rites & actions","The act of using incense to honour the altar, Gospel book, gifts, ministers or assembly as directed by the rite."],
+  ["Kneeler","Church furnishings","A padded or wooden support for kneeling during prayer."],
+  ["Sanctuary lamp","Objects & symbols","A lamp near the tabernacle indicating the presence of the Blessed Sacrament."],
+  ["Tabernacle","Church furnishings","A secure, reverent place where the consecrated Eucharist is reserved."],
+  ["Vigil","Liturgical calendar","A liturgical celebration or period of prayer on the eve of a feast; some vigils have their own Mass."],
+  ["Votive candle","Objects & symbols","A candle lit as a devotional prayer or intention, usually outside the central actions of Mass."],
+  ["Holy Family","Liturgical calendar","The feast honouring Jesus, Mary and Joseph, usually celebrated within the Christmas season."],
+  ["Baptism of the Lord","Liturgical calendar","The feast that concludes the Christmas season in the Roman Rite calendar."],
+  ["Ascension","Liturgical calendar","The celebration of Christ’s Ascension into heaven, observed on the date set by the local calendar."],
+];
+
+const glossaryEl=document.getElementById('terms'), searchEl=document.getElementById('search'), categoryEl=document.getElementById('category'), sortEl=document.getElementById('sort');
+const categories=[...new Set(glossary.map(x=>x[1]))].sort();
+categories.forEach(c=>{const o=document.createElement('option');o.value=c;o.textContent=c;categoryEl.appendChild(o)});
+function renderGlossary(){
+ const q=searchEl.value.trim().toLowerCase(), cat=categoryEl.value;
+ let list=glossary.filter(x=>(!cat||x[1]===cat)&&x.join(' ').toLowerCase().includes(q));
+ list.sort(sortEl.value==='category'?(a,b)=>a[1].localeCompare(b[1])||a[0].localeCompare(b[0]):(a,b)=>a[0].localeCompare(b[0]));
+ glossaryEl.innerHTML='';
+ list.forEach(x=>{const article=document.createElement('article');article.className='term';const tag=document.createElement('span');tag.className='tag';tag.textContent=x[1];const h=document.createElement('h3');h.textContent=x[0];const p=document.createElement('p');p.textContent=x[2];article.append(tag,h,p);glossaryEl.appendChild(article)});
+ document.getElementById('term-count').textContent=`Showing ${list.length} of ${glossary.length} glossary terms.`;
+}
+[searchEl,categoryEl,sortEl].forEach(el=>el.addEventListener('input',renderGlossary));renderGlossary();
+
+document.getElementById('card-form').addEventListener('submit',e=>{
+ e.preventDefault();
+ const name=document.getElementById('fullName').value.trim();
+ if(!name){document.getElementById('fullName').focus();return}
+ document.getElementById('card-name').textContent=name;
+ document.getElementById('card-parish').textContent=document.getElementById('parish').value.trim()||'Parish not entered';
+ document.getElementById('card-role').textContent=document.getElementById('role').value;
+ document.getElementById('card-motto').textContent=document.getElementById('motto').value.trim()||'“Serve with joy and reverence.”';
+ document.getElementById('namecard').scrollIntoView({behavior:'smooth',block:'center'});
+});
+document.getElementById('print-card').addEventListener('click',()=>window.print());
+
+const questionBank=[
+{q:"Which book contains the readings proclaimed at Mass?",o:["Lectionary","Roman Missal","Ritual candle"],a:0,e:"The Lectionary contains the Scripture readings for Mass."},
+{q:"What is the chalice used for?",o:["Holding the Eucharistic wine","Holding incense","Washing hands"],a:0,e:"The chalice is the cup used for the wine at Mass."},
+{q:"Who carries the thurible?",o:["Thurifer","Lector","Sacristan"],a:0,e:"The thurifer carries the thurible, the vessel in which incense is burned."},
+{q:"What is the ambo?",o:["The place for proclaiming Scripture readings","A vestment","A candle holder"],a:0,e:"The ambo is the designated place for the readings and sometimes the homily."},
+{q:"What does the corporal do?",o:["Provides a linen surface beneath sacred vessels","Holds holy water","Covers a server’s head"],a:0,e:"The corporal is placed on the altar beneath the sacred vessels."},
+{q:"What is the tabernacle used for?",o:["Reserving the Blessed Sacrament","Storing school books","Holding incense"],a:0,e:"The tabernacle is the secure place where the Blessed Sacrament is reserved."},
+{q:"Which garment is the priest’s principal outer vestment at Mass?",o:["Chasuble","Dalmatic","Mitre"],a:0,e:"The chasuble is the principal outer vestment of a priest celebrating Mass."},
+{q:"What is a processional cross?",o:["A cross carried at the head of a procession","A book of prayers","A type of altar linen"],a:0,e:"A cross bearer carries it during the procession."},
+{q:"What is the sacristy?",o:["A room for vestments and liturgical items","The main congregation seating area","The place where the homily is always given"],a:0,e:"The sacristy is where ministers prepare and liturgical items are kept."},
+{q:"Which season prepares the Church for Easter?",o:["Lent","Ordinary Time","Christmas Time"],a:0,e:"Lent is a season of prayer and preparation for Easter."},
+{q:"What is the credence table for?",o:["Holding items needed during the liturgy before use","Seating the bishop","Keeping the congregation’s bags"],a:0,e:"The credence table holds liturgical items before they are needed."},
+{q:"What does the thurible hold?",o:["Burning incense","Holy water","Consecrated hosts"],a:0,e:"The thurible is the censer in which incense is burned."},
+{q:"What is a purificator?",o:["A small linen used to wipe the chalice","A large processional candle","A book of readings"],a:0,e:"The purificator is a small linen used with sacred vessels."},
+{q:"What is the Roman Missal?",o:["The book containing prayers and directions for Mass","A book only of Gospel readings","A list of parish members"],a:0,e:"The Roman Missal contains the prayers and rubrics for Mass in the Roman Rite."},
+{q:"Who is the thurifer?",o:["The server who carries the thurible","The person who reads the Gospel","The person who rings the church doorbell"],a:0,e:"The thurifer carries incense in the thurible."},
+{q:"What is the sanctuary?",o:["The area where the altar and principal liturgical furnishings are located","The church car park","A room used only for choir practice"],a:0,e:"The sanctuary is the area around the altar and other principal furnishings."},
+{q:"What is the Paschal candle especially associated with?",o:["Easter","Ash Wednesday only","Every weekday by rule"],a:0,e:"The Paschal candle is blessed and lit at Easter."},
+{q:"What is the dismissal?",o:["The sending forth at the end of Mass","The opening song","The preparation of the gifts"],a:0,e:"The dismissal sends the assembly forth at the conclusion of Mass."},
+{q:"What is a ciborium commonly used to hold?",o:["Hosts for Communion","Incense charcoal","Holy oils only"],a:0,e:"A ciborium is a covered vessel used to hold consecrated hosts."},
+{q:"What should a server do if unsure what to do during Mass?",o:["Follow the parish leader’s instructions calmly","Invent a new action","Leave immediately"],a:0,e:"Follow the priest, deacon or parish coordinator and ask for guidance when appropriate."},
+{q:"What is the liturgical year?",o:["The Church’s annual cycle of seasons and celebrations","A server’s school timetable","The church’s building age"],a:0,e:"The liturgical year organises seasons, feasts and celebrations."},
+{q:"What does a lector do?",o:["Proclaims Scripture readings other than the Gospel","Carries the thurible at every Mass","Prepares all vestments"],a:0,e:"A lector proclaims Scripture readings assigned to that ministry."},
+{q:"What is the ambo not primarily used for?",o:["Storing coats","Proclaiming Scripture","Sometimes giving the homily"],a:0,e:"The ambo is for the proclamation of Scripture and certain other liturgical functions."},
+{q:"What is holy water used for?",o:["Blessings and certain rites","Filling the chalice for Communion","Cleaning every sacred vessel"],a:0,e:"Holy water is used for blessings and other rites."},
+{q:"What is the Great Amen?",o:["The assembly’s response concluding the Eucharistic Prayer","The opening greeting","The name of a vestment"],a:0,e:"The Great Amen affirms the concluding doxology of the Eucharistic Prayer."},
+{q:"What is Advent?",o:["The season of preparation for Christmas and hopeful expectation","The season after Pentecost only","A sacred vessel"],a:0,e:"Advent prepares for the celebration of Christ’s birth and looks forward to his coming."},
+{q:"What is a pall?",o:["A stiffened square cover placed over the chalice","A book for readings","A processional cross"],a:0,e:"The pall is placed over the chalice."},
+{q:"What does a sacristan help care for?",o:["Liturgical items and preparation spaces","Only the church garden","Only the microphone"],a:0,e:"A sacristan helps prepare and care for books, vessels, vestments and related items."},
+{q:"What is the Responsorial Psalm?",o:["A Psalm response between readings","The final blessing","A type of vestment"],a:0,e:"It is the Psalm response between the first reading and the second reading, when there is one."},
+{q:"Why should servers arrive early?",o:["To prepare and receive instructions","To change the readings","To choose any role without asking"],a:0,e:"Arriving early allows time to prepare and learn any instructions."}
+,
+{q:"What is the main purpose of the Entrance chant?",o:["To accompany the entrance procession","To replace the Gospel","To announce the collection total"],a:0,e:"The Entrance chant accompanies the procession and helps begin the celebration."},
+{q:"What is the Book of the Gospels?",o:["A liturgical book containing Gospel readings","A list of parish accounts","A book used only for hymns"],a:0,e:"The Book of the Gospels contains Gospel readings."},
+{q:"What is a pyx?",o:["A small container used to carry the Eucharist to the sick","A large Easter candle","A vessel for incense"],a:0,e:"A pyx is used to carry the Eucharist to people unable to attend Mass."},
+{q:"What does Viaticum mean in Catholic practice?",o:["Holy Communion given to a person near death","The opening song at Mass","The cloth covering the chalice"],a:0,e:"Viaticum is Holy Communion given to a person near death."},
+{q:"What is Eucharistic adoration?",o:["Prayer before the Blessed Sacrament","The washing of altar linens","The entrance procession"],a:0,e:"Eucharistic adoration is prayerful worship before the Blessed Sacrament."},
+{q:"What is Benediction often associated with?",o:["A liturgical blessing during Eucharistic devotion","The first Scripture reading","The selection of vestments"],a:0,e:"Benediction is a liturgical blessing often associated with Eucharistic adoration."},
+{q:"What is the Paschal candle especially associated with?",o:["Easter and Christ's Resurrection","The beginning of Advent only","Every weekday by universal rule"],a:0,e:"The Paschal candle is blessed and lit at Easter and used in certain celebrations."},
+{q:"What does Pentecost commemorate?",o:["The coming of the Holy Spirit upon the disciples","The birth of Jesus","The beginning of Lent"],a:0,e:"Pentecost celebrates the coming of the Holy Spirit upon the disciples."},
+{q:"What is Palm Sunday?",o:["The Sunday beginning Holy Week","The last day of Christmas Time","A type of liturgical vestment"],a:0,e:"Palm Sunday begins Holy Week and recalls Jesus' entry into Jerusalem."},
+{q:"What is Ash Wednesday?",o:["The day that begins Lent in the Roman Rite","The end of Easter Season","The first day of Advent"],a:0,e:"Ash Wednesday marks the beginning of Lent in the Roman Rite."},
+{q:"What does the Easter Triduum celebrate?",o:["The Passion, Death and Resurrection of Jesus","Only the birth of Jesus","The beginning of Ordinary Time"],a:0,e:"The Easter Triduum is the three-day celebration of Christ's Passion, Death and Resurrection."},
+{q:"What is the Prayer of the Faithful?",o:["Intercessions for the Church and the world","The final blessing","A list of server duties"],a:0,e:"The Universal Prayer or Prayer of the Faithful presents intercessions for various needs."},
+{q:"What is the fraction rite?",o:["The breaking of the consecrated bread before Communion","The entrance procession","The washing of hands at the beginning"],a:0,e:"The fraction rite includes the breaking of the consecrated bread."},
+{q:"What is the Agnus Dei?",o:["The 'Lamb of God' litany during the fraction rite","The bishop's staff","A name for the ambo"],a:0,e:"Agnus Dei means 'Lamb of God' and is sung or spoken during the fraction rite."},
+{q:"What is the Collect at Mass?",o:["The opening prayer that gathers the assembly's intentions","The final procession","A sacred vessel"],a:0,e:"The Collect is the opening prayer of the Mass."},
+{q:"What is the Sign of the Cross?",o:["A Christian prayer gesture invoking the Father, Son and Holy Spirit","A type of altar linen","A name for the incense boat"],a:0,e:"The Sign of the Cross is a fundamental Christian prayer gesture."},
+{q:"What is the nave of a church?",o:["The main area where the congregation gathers","The room for vestments","The bishop's official chair"],a:0,e:"The nave is the main area where the congregation gathers."},
+{q:"What is the narthex?",o:["An entrance area or vestibule of a church","A type of sacred oil","A book of readings"],a:0,e:"The narthex is an entrance area or vestibule."},
+{q:"What is the cathedra?",o:["The bishop's official chair in a cathedral","A container for incense","A vestment worn by a deacon"],a:0,e:"The cathedra is the bishop's official chair in the cathedral."},
+{q:"What is the sacrarium?",o:["A special sink in the sacristy that drains directly into the ground","The main church entrance","A vessel used to hold hosts"],a:0,e:"A sacrarium is a special sink used for certain sacred purposes."},
+{q:"What is chrism?",o:["Oil blessed by a bishop for certain sacraments and rites","A cloth placed under the chalice","A type of candle"],a:0,e:"Sacred chrism is used in certain sacraments and rites."},
+{q:"What is the Oil of the Sick used for?",o:["The Anointing of the Sick","Lighting the Easter candle","Washing the altar"],a:0,e:"The Oil of the Sick is used in the sacrament of Anointing of the Sick."},
+{q:"What is the Oil of Catechumens used for?",o:["Certain baptismal rites","Purifying the chalice","Lighting the sanctuary lamp"],a:0,e:"The Oil of Catechumens is used in certain baptismal rites."},
+{q:"What is a solemnity?",o:["The highest rank of liturgical celebration","A type of sacred vessel","A server's formal title"],a:0,e:"A solemnity is the highest rank of liturgical celebration in the Roman Rite."},
+{q:"What is a memorial in the liturgical calendar?",o:["A celebration commemorating a saint or event","A book used at the ambo","A type of incense"],a:0,e:"A memorial is a liturgical celebration of a saint or event at the memorial rank."},
+{q:"What is a ferial day?",o:["A weekday without a higher-ranking feast or solemnity","A special chalice","The final hymn of Mass"],a:0,e:"A ferial day is a weekday without a higher-ranking liturgical celebration."},
+{q:"What is the purpose of liturgical colours?",o:["They mark seasons and celebrations in the Church's calendar","They show which server is oldest","They replace the readings"],a:0,e:"Liturgical colours are associated with seasons and celebrations."},
+{q:"What should an altar server do after making a small mistake?",o:["Stay calm and continue reverently","Stop the liturgy immediately","Make a joke to the congregation"],a:0,e:"Stay calm and follow the authorised minister's direction."},
+{q:"Why should servers handle sacred vessels carefully?",o:["They are used for sacred liturgical purposes and must be treated reverently","They are ordinary toys","They may be taken home by anyone"],a:0,e:"Sacred vessels are handled according to parish training and liturgical norms."},
+{q:"What are rubrics?",o:["Directions in liturgical books that guide how a celebration is carried out","Decorative designs on the altar","Names of church seasons"],a:0,e:"Rubrics are instructions in liturgical books."}
+];
+let currentQuestions=[];
+function shuffle(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+const USED_KEY='altarServerHubUsedQuestionIds_v2';
+function getUsed(){try{return JSON.parse(localStorage.getItem(USED_KEY)||'[]')}catch(e){return []}}
+function saveUsed(ids){try{localStorage.setItem(USED_KEY,JSON.stringify(ids))}catch(e){}}
+let quizChecked=false;
+function startQuiz(){
+ let used=getUsed();
+ let remaining=questionBank.map((_,i)=>i).filter(i=>!used.includes(i));
+ if(remaining.length<10){used=[];remaining=questionBank.map((_,i)=>i)}
+ const chosen=shuffle(remaining).slice(0,10);
+ saveUsed(used.concat(chosen));
+ currentQuestions=chosen.map(id=>{const item=questionBank[id];const options=shuffle(item.o.map((text,i)=>({text,correct:i===item.a})));return {...item,id,options}});
+ quizChecked=false;
+ const area=document.getElementById('quiz-area');area.innerHTML='';
+ currentQuestions.forEach((item,i)=>{const box=document.createElement('div');box.className='question';const p=document.createElement('p');p.textContent=`${i+1}. ${item.q}`;box.appendChild(p);item.options.forEach((opt,j)=>{const label=document.createElement('label');const radio=document.createElement('input');radio.type='radio';radio.name=`q${i}`;radio.value=String(j);radio.style.width='auto';label.append(radio,document.createTextNode(' '+opt.text));box.appendChild(label)});area.appendChild(box)});
+ document.getElementById('quiz-result').textContent='';
+ document.getElementById('submission-score').value='';
+ document.getElementById('submission-answers').value='';
+}
+function collectQuiz(){
+ let score=0,answered=0;const details=[];
+ currentQuestions.forEach((q,i)=>{
+  const chosen=document.querySelector(`input[name="q${i}"]:checked`);
+  const correct=q.options.find(x=>x.correct);
+  const selected=chosen?q.options[Number(chosen.value)].text:'Not answered';
+  if(chosen){answered++;if(q.options[Number(chosen.value)].correct)score++}
+  details.push(`${i+1}. ${q.q}\nLearner answer: ${selected}\nCorrect answer: ${correct.text}\nExplanation: ${q.e}`);
+ });
+ return {score,answered,details:details.join('\n\n')};
+}
+document.getElementById('check-quiz').addEventListener('click',()=>{
+ const {score,answered}=collectQuiz();
+ const result=document.getElementById('quiz-result');
+ if(answered<currentQuestions.length){result.textContent=`You answered ${answered} of ${currentQuestions.length}. Please answer every question before checking.`;return}
+ quizChecked=true;
+ result.textContent=`You scored ${score} out of ${currentQuestions.length}. ${score>=8?'Excellent work!':score>=5?'Good effort—review the explanations and try again.':'Keep learning—you can try a fresh quiz.'}`;
+ document.querySelectorAll('.question .explanation').forEach(el=>el.remove());
+ const boxes=document.querySelectorAll('.question');
+ currentQuestions.forEach((q,i)=>{const p=document.createElement('p');p.className='small explanation';const correct=q.options.find(x=>x.correct);p.textContent=`Correct answer: ${correct.text}. ${q.e}`;boxes[i].appendChild(p)});
+ const resultData=collectQuiz();
+ document.getElementById('submission-score').value=`${resultData.score} / ${currentQuestions.length}`;
+ document.getElementById('submission-answers').value=resultData.details;
+});
+document.getElementById('new-quiz').addEventListener('click',startQuiz);
+document.getElementById('quiz-submit-form').addEventListener('submit',function(e){
+ if((this.getAttribute('action')||'').includes('YOUR_EMAIL@example.com')){
+  e.preventDefault();
+  alert('The website owner must replace YOUR_EMAIL@example.com in index.html with their receiving email address and verify it with FormSubmit. Then upload the updated file to GitHub Pages.');
+  return;
+ }
+ const {score,answered,details}=collectQuiz();
+ if(!quizChecked || answered!==currentQuestions.length){
+  e.preventDefault();alert('Please answer all questions and click “Check my answers” before submitting.');return;
+ }
+ document.getElementById('submission-score').value=`${score} / ${currentQuestions.length}`;
+ document.getElementById('submission-answers').value=details;
+});
+startQuiz();
+</script>
+</body>
+</html>
