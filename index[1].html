@@ -9,6 +9,7 @@
 :root{--navy:#10243a;--blue:#1d4666;--gold:#e6b85c;--cream:#fffaf0;--ink:#202a35;--muted:#667386;--line:#e4e8ed;--white:#fff}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--cream);color:var(--ink);line-height:1.65}
 header{background:linear-gradient(130deg,var(--navy),var(--blue));color:white;padding:28px 18px 34px;border-bottom:5px solid var(--gold)}
+.call-response{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin:0 0 18px;padding:12px 16px;border:1px solid #e6b85c;border-radius:12px;background:#ffffff12}.call-response strong{font-size:clamp(1.1rem,2.5vw,1.45rem);letter-spacing:.03em;color:#f6d98f}.call-response .reply{display:inline-block;padding:5px 12px;border-radius:8px;background:#fffaf0;color:#10243a;font-weight:bold}.call-response small{display:block;color:#e6edf5;width:100%}.response-practice{display:flex;flex-direction:column;gap:8px;min-width:min(100%,280px);flex:1}.response-practice label{font-weight:bold;color:#fff}.response-practice input{width:100%;padding:10px 12px;border:2px solid #e6b85c;border-radius:8px;font:inherit;color:#202a35;background:#fff}.response-practice button{align-self:flex-start;border:0;border-radius:8px;padding:9px 14px;background:#e6b85c;color:#10243a;font-weight:bold;cursor:pointer}.response-feedback{font-weight:bold;margin:0;color:#fff}.response-feedback.correct{color:#a7f3c1}.response-feedback.incorrect{color:#ffe0a3}
 .wrap{max-width:1120px;margin:auto;padding:0 18px}.brand{font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-weight:bold}
 h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.1;margin:12px 0}header p{max-width:760px;color:#e6edf5}
 nav{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}nav a{color:white;text-decoration:none;border:1px solid #718194;padding:8px 12px;border-radius:30px}nav a:hover{background:var(--gold);color:var(--navy)}
@@ -27,6 +28,15 @@ footer{background:#0b1928;color:#d9e1eb;padding:24px;text-align:center}footer a{
 <body>
 <header>
   <div class="wrap">
+    <div class="call-response" aria-label="Liturgical greeting and response practice">
+      <div><strong>Benedicamus Domino</strong><small>Let us bless the Lord.</small></div>
+      <div class="response-practice">
+        <label for="liturgical-reply">Type the reply yourself:</label>
+        <input id="liturgical-reply" type="text" placeholder="Type your reply here..." autocomplete="off">
+        <button id="check-liturgical-reply" type="button">Check Answer</button>
+        <p id="liturgical-feedback" class="response-feedback" role="status" aria-live="polite"></p>
+      </div>
+    </div>
     <div class="brand">Learn • Prepare • Serve</div>
     <h1>Altar Server Hub</h1>
     <p>A practical learning space for Catholic Mass, altar-server vocabulary, sacred objects, liturgical seasons, serving roles and good habits. Learn at your own pace and always follow the instructions of your priest, deacon or parish coordinator.</p>
@@ -730,6 +740,27 @@ document.getElementById('quiz-submit-form').addEventListener('submit',function(e
  if(!quizChecked || lastScore===null){e.preventDefault();alert('Please answer all questions and submit to the computer for marking first.');return}
  if((this.getAttribute('action')||'').includes('YOUR_EMAIL@example.com')){e.preventDefault();alert('The creator has not configured the receiving email yet. The computer can still mark your quiz and show your score.');return}
  document.getElementById('submission-name').value=getStudentName();
+});
+
+
+document.getElementById('check-liturgical-reply').addEventListener('click', function(){
+  const field = document.getElementById('liturgical-reply');
+  const feedback = document.getElementById('liturgical-feedback');
+  const answer = field.value.trim().toLowerCase().replace(/[.!?]+$/,'').replace(/\s+/g,' ');
+  feedback.className = 'response-feedback';
+  if (!answer) {
+    feedback.textContent = 'Type your reply first, then check it.';
+    field.focus();
+  } else if (answer === 'deo gratias') {
+    feedback.textContent = 'Correct! Deo gratias means “Thanks be to God.”';
+    feedback.classList.add('correct');
+  } else {
+    feedback.textContent = 'Not quite. Try again!';
+    feedback.classList.add('incorrect');
+  }
+});
+document.getElementById('liturgical-reply').addEventListener('keydown', function(e){
+  if (e.key === 'Enter') document.getElementById('check-liturgical-reply').click();
 });
 
 </script>
