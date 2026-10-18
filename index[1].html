@@ -106,25 +106,30 @@ footer{background:#0b1928;color:#d9e1eb;padding:24px;text-align:center}footer a{
 </section>
 
 <section id="quiz">
-<h2>Altar-Server Quiz</h2>
-<p class="small">Each quiz has 10 questions selected randomly from a large question bank. This browser remembers which questions have appeared and avoids repeats until the bank is exhausted. Press “New quiz” for another set.</p>
+<h2>Altar-Server Online Quiz</h2>
+<p>Enter your name and start your own 10-question quiz. Questions and answer choices are shuffled, and the website grades your answers automatically. The site avoids repeating the same full quiz on this browser where possible.</p>
+<div class="field" style="max-width:520px;margin-bottom:1rem"><label for="quiz-student-name">Your name *</label><input id="quiz-student-name" name="Learner name" required maxlength="70" placeholder="Enter your name before starting"></div>
+<p><button id="new-quiz" type="button">Start a different quiz</button></p>
 <div id="quiz-area"></div>
-<button id="check-quiz" type="button">Check my answers</button> <button class="secondary" id="new-quiz" type="button">New quiz</button>
+<button id="submit-computer" type="button">Submit to computer — mark my quiz</button>
 <div id="quiz-result" class="result" aria-live="polite"></div>
-<form id="quiz-submit-form" class="no-print" method="POST" action="https://formsubmit.co/YOUR_EMAIL@example.com">
-  <h3>Submit your quiz answers</h3>
-  <p class="small">The website owner must replace the placeholder email in the website code with their own receiving email and verify it once with FormSubmit.</p>
-  <div class="row">
-    <div class="field"><label for="quiz-student-name">Your name *</label><input id="quiz-student-name" name="Learner name" required maxlength="70" placeholder="Enter your name"></div>
-    <div class="field"><label for="quiz-student-email">Your email (optional)</label><input id="quiz-student-email" name="Learner email" type="email" maxlength="120" placeholder="If you want a reply"></div>
-  </div>
-  <input type="hidden" name="_subject" value="Altar Server Hub quiz submission">
-  <input type="hidden" name="_template" value="table">
-  <input type="hidden" name="Quiz score" id="submission-score">
-  <input type="hidden" name="Questions and answers" id="submission-answers">
-  <p><button id="submit-answers" type="submit">Submit answers to the owner</button></p>
-  <p class="small">Quiz submissions go through FormSubmit to the configured owner email. Do not enter private or sensitive information.</p>
-</form>
+<div id="creator-submit-area" hidden>
+  <h3>Submit your marked quiz to the creator</h3>
+  <p class="small">Choose this option if you want the website creator to receive your name, score, questions, and answers by email. The creator must configure and verify a receiving email address for this to work.</p>
+  <form id="quiz-submit-form" class="no-print" method="POST" action="https://formsubmit.co/YOUR_EMAIL@example.com">
+    <div class="row">
+      <div class="field"><label for="quiz-student-email">Your email (optional)</label><input id="quiz-student-email" name="Learner email" type="email" maxlength="120" placeholder="If you want a reply"></div>
+    </div>
+    <input type="hidden" name="_subject" value="Altar Server Hub quiz submission">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="Learner name" id="submission-name">
+    <input type="hidden" name="Quiz score" id="submission-score">
+    <input type="hidden" name="Percentage" id="submission-percentage">
+    <input type="hidden" name="Questions and answers" id="submission-answers">
+    <button id="submit-answers" type="submit">Submit marked quiz to creator</button>
+    <p class="small">Do not enter private or sensitive information. The quiz can be marked on your device without sending anything to the creator.</p>
+  </form>
+</div>
 </section>
 
 <section id="serving-well">
@@ -519,24 +524,32 @@ const questionBank=[
 {q:"What are rubrics?",o:["Directions in liturgical books that guide how a celebration is carried out","Decorative designs on the altar","Names of church seasons"],a:0,e:"Rubrics are instructions in liturgical books."}
 ];
 let currentQuestions=[];
-function shuffle(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
-const USED_KEY='altarServerHubUsedQuestionIds_v2';
-function getUsed(){try{return JSON.parse(localStorage.getItem(USED_KEY)||'[]')}catch(e){return []}}
-function saveUsed(ids){try{localStorage.setItem(USED_KEY,JSON.stringify(ids))}catch(e){}}
 let quizChecked=false;
+let lastScore=null;
+function shuffle(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+const USED_QUIZZES_KEY='altarServerHubQuizFingerprints_v3';
+function getUsedQuizSets(){try{return JSON.parse(localStorage.getItem(USED_QUIZZES_KEY)||'[]')}catch(e){return []}}
+function rememberQuizSet(signature){try{const used=getUsedQuizSets();used.push(signature);localStorage.setItem(USED_QUIZZES_KEY,JSON.stringify(used.slice(-5000)))}catch(e){}}
+function getStudentName(){return document.getElementById('quiz-student-name').value.trim()}
 function startQuiz(){
- let used=getUsed();
- let remaining=questionBank.map((_,i)=>i).filter(i=>!used.includes(i));
- if(remaining.length<10){used=[];remaining=questionBank.map((_,i)=>i)}
- const chosen=shuffle(remaining).slice(0,10);
- saveUsed(used.concat(chosen));
+ const studentName=getStudentName();
+ if(!studentName){alert('Please enter your name before starting your quiz.');document.getElementById('quiz-student-name').focus();return}
+ if(questionBank.length<10){alert('The quiz question bank needs at least 10 questions.');return}
+ const usedSets=getUsedQuizSets();
+ let chosen=[], signature='';
+ for(let attempt=0;attempt<100;attempt++){
+  chosen=shuffle(questionBank.map((_,i)=>i)).slice(0,10);
+  signature=[...chosen].sort((a,b)=>a-b).join(',');
+  if(!usedSets.includes(signature))break;
+ }
+ rememberQuizSet(signature);
  currentQuestions=chosen.map(id=>{const item=questionBank[id];const options=shuffle(item.o.map((text,i)=>({text,correct:i===item.a})));return {...item,id,options}});
- quizChecked=false;
+ quizChecked=false;lastScore=null;
+ document.getElementById('creator-submit-area').hidden=true;
  const area=document.getElementById('quiz-area');area.innerHTML='';
  currentQuestions.forEach((item,i)=>{const box=document.createElement('div');box.className='question';const p=document.createElement('p');p.textContent=`${i+1}. ${item.q}`;box.appendChild(p);item.options.forEach((opt,j)=>{const label=document.createElement('label');const radio=document.createElement('input');radio.type='radio';radio.name=`q${i}`;radio.value=String(j);radio.style.width='auto';label.append(radio,document.createTextNode(' '+opt.text));box.appendChild(label)});area.appendChild(box)});
- document.getElementById('quiz-result').textContent='';
- document.getElementById('submission-score').value='';
- document.getElementById('submission-answers').value='';
+ document.getElementById('quiz-result').textContent=`Quiz ready for ${studentName}. Answer all 10 questions, then submit to the computer for marking.`;
+ document.getElementById('submission-score').value='';document.getElementById('submission-percentage').value='';document.getElementById('submission-answers').value='';document.getElementById('submission-name').value=studentName;
 }
 function collectQuiz(){
  let score=0,answered=0;const details=[];
@@ -549,34 +562,30 @@ function collectQuiz(){
  });
  return {score,answered,details:details.join('\n\n')};
 }
-document.getElementById('check-quiz').addEventListener('click',()=>{
- const {score,answered}=collectQuiz();
- const result=document.getElementById('quiz-result');
- if(answered<currentQuestions.length){result.textContent=`You answered ${answered} of ${currentQuestions.length}. Please answer every question before checking.`;return}
- quizChecked=true;
- result.textContent=`You scored ${score} out of ${currentQuestions.length}. ${score>=8?'Excellent work!':score>=5?'Good effort—review the explanations and try again.':'Keep learning—you can try a fresh quiz.'}`;
+document.getElementById('submit-computer').addEventListener('click',()=>{
+ if(!getStudentName()){alert('Please enter your name first.');document.getElementById('quiz-student-name').focus();return}
+ if(!currentQuestions.length){alert('Click “Start a different quiz” to get your questions first.');return}
+ const {score,answered,details}=collectQuiz();
+ if(answered<currentQuestions.length){document.getElementById('quiz-result').textContent=`${getStudentName()}, you have answered ${answered} of ${currentQuestions.length} questions. Please answer all questions before submitting.`;return}
+ quizChecked=true;lastScore=score;
+ const percentage=Math.round(score/currentQuestions.length*100);
+ document.getElementById('quiz-result').textContent=`${getStudentName()}, your score is ${score}/${currentQuestions.length} (${percentage}%). ${score===10?'Outstanding! Perfect score!':score>=8?'Excellent work!':score>=5?'Good effort! Review the explanations and keep practising.':'Keep learning! Review the explanations and try another quiz.'}`;
  document.querySelectorAll('.question .explanation').forEach(el=>el.remove());
  const boxes=document.querySelectorAll('.question');
  currentQuestions.forEach((q,i)=>{const p=document.createElement('p');p.className='small explanation';const correct=q.options.find(x=>x.correct);p.textContent=`Correct answer: ${correct.text}. ${q.e}`;boxes[i].appendChild(p)});
- const resultData=collectQuiz();
- document.getElementById('submission-score').value=`${resultData.score} / ${currentQuestions.length}`;
- document.getElementById('submission-answers').value=resultData.details;
+ document.getElementById('submission-name').value=getStudentName();
+ document.getElementById('submission-score').value=`${score} / ${currentQuestions.length}`;
+ document.getElementById('submission-percentage').value=`${percentage}%`;
+ document.getElementById('submission-answers').value=details;
+ document.getElementById('creator-submit-area').hidden=false;
 });
 document.getElementById('new-quiz').addEventListener('click',startQuiz);
 document.getElementById('quiz-submit-form').addEventListener('submit',function(e){
- if((this.getAttribute('action')||'').includes('YOUR_EMAIL@example.com')){
-  e.preventDefault();
-  alert('The website owner must replace YOUR_EMAIL@example.com in index.html with their receiving email address and verify it with FormSubmit. Then upload the updated file to GitHub Pages.');
-  return;
- }
- const {score,answered,details}=collectQuiz();
- if(!quizChecked || answered!==currentQuestions.length){
-  e.preventDefault();alert('Please answer all questions and click “Check my answers” before submitting.');return;
- }
- document.getElementById('submission-score').value=`${score} / ${currentQuestions.length}`;
- document.getElementById('submission-answers').value=details;
+ if(!quizChecked || lastScore===null){e.preventDefault();alert('Please answer all questions and submit to the computer for marking first.');return}
+ if((this.getAttribute('action')||'').includes('YOUR_EMAIL@example.com')){e.preventDefault();alert('The creator has not configured the receiving email yet. The computer can still mark your quiz and show your score.');return}
+ document.getElementById('submission-name').value=getStudentName();
 });
-startQuiz();
+
 </script>
 </body>
 </html>
