@@ -120,12 +120,18 @@ footer{background:#0b1928;color:#d9e1eb;padding:24px;text-align:center}footer a{
 
 <section id="quiz">
 <h2>Altar-Server Online Quiz</h2>
-<p>Enter your name and start your own 10-question quiz. Questions and answer choices are shuffled, and the website grades your answers automatically. The site avoids repeating the same full quiz on this browser where possible.</p>
-<div class="field" style="max-width:520px;margin-bottom:1rem"><label for="quiz-student-name">Your name *</label><input id="quiz-student-name" name="Learner name" required maxlength="70" placeholder="Enter your name before starting"></div>
+<p>Choose a nickname and start a 10-question quiz. Questions and answer choices are shuffled, and the website grades your answers automatically. After marking, you can submit your score to the shared online results database once the creator configures it.</p>
+<div class="field" style="max-width:520px;margin-bottom:1rem"><label for="quiz-student-name">Choose a nickname *</label><input id="quiz-student-name" name="Player nickname" required maxlength="30" autocomplete="nickname" placeholder="Choose a nickname before starting"><p class="small">Use a nickname, not your full name or private information.</p></div>
 <p><button id="new-quiz" type="button">Start a different quiz</button></p>
 <div id="quiz-area"></div>
 <button id="submit-computer" type="button">Submit to computer — mark my quiz</button>
 <div id="quiz-result" class="result" aria-live="polite"></div>
+<div class="study-panel" id="global-results-panel">
+  <h3>Submit your score globally</h3>
+  <p class="small">After your quiz is marked, submit your nickname and score to the shared online results database. This works across devices after the creator completes the database setup.</p>
+  <button id="submit-global-result" type="button" disabled>Submit result globally</button>
+  <p id="global-submit-status" class="small" role="status" aria-live="polite">Database setup is required before global submissions can work.</p>
+</div>
 <div id="creator-submit-area" hidden>
   <h3>Submit your marked quiz to the creator</h3>
   <p class="small">Choose this option if you want the website creator to receive your name, score, questions, and answers by email. The creator must configure and verify a receiving email address for this to work.</p>
@@ -703,8 +709,10 @@ function startQuiz(){
  }
  rememberQuizSet(signature);
  currentQuestions=chosen.map(id=>{const item=questionBank[id];const options=shuffle(item.o.map((text,i)=>({text,correct:i===item.a})));return {...item,id,options}});
- quizChecked=false;lastScore=null;
+ quizChecked=false;lastScore=null;globalResultSubmitted=false;
  document.getElementById('creator-submit-area').hidden=true;
+ document.getElementById('submit-global-result').disabled=true;
+ document.getElementById('global-submit-status').textContent='Finish and mark the quiz first. Global submissions require the creator to configure the database.';
  const area=document.getElementById('quiz-area');area.innerHTML='';
  currentQuestions.forEach((item,i)=>{const box=document.createElement('div');box.className='question';const p=document.createElement('p');p.textContent=`${i+1}. ${item.q}`;box.appendChild(p);item.options.forEach((opt,j)=>{const label=document.createElement('label');const radio=document.createElement('input');radio.type='radio';radio.name=`q${i}`;radio.value=String(j);radio.style.width='auto';label.append(radio,document.createTextNode(' '+opt.text));box.appendChild(label)});area.appendChild(box)});
  document.getElementById('quiz-result').textContent=`Quiz ready for ${studentName}. Answer all 10 questions, then submit to the computer for marking.`;
@@ -737,6 +745,8 @@ document.getElementById('submit-computer').addEventListener('click',()=>{
  document.getElementById('submission-percentage').value=`${percentage}%`;
  document.getElementById('submission-answers').value=details;
  document.getElementById('creator-submit-area').hidden=false;
+ document.getElementById('submit-global-result').disabled=false;
+ document.getElementById('global-submit-status').textContent='Your quiz is marked. You can now submit your nickname and score.';
 });
 document.getElementById('new-quiz').addEventListener('click',startQuiz);
 document.getElementById('quiz-submit-form').addEventListener('submit',function(e){
@@ -746,6 +756,52 @@ document.getElementById('quiz-submit-form').addEventListener('submit',function(e
 });
 
 
+// GLOBAL QUIZ RESULTS — configure these two values after creating a Supabase project.
+// The Supabase anon/publishable key is intended for browser use; database security comes from RLS policies.
+const SUPABASE_URL = 'https://YOUR_PROJECT_ID.supabase.co';
+const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_PUBLISHABLE_OR_ANON_KEY';
+let globalResultSubmitted = false;
+document.getElementById('submit-global-result').addEventListener('click', async function(){
+  const status = document.getElementById('global-submit-status');
+  const button = this;
+  if (!quizChecked || lastScore === null || !currentQuestions.length) {
+    status.textContent = 'Please finish and mark your quiz first.';
+    return;
+  }
+  const nickname = getStudentName().trim();
+  if (!nickname) { status.textContent = 'Please enter your nickname first.'; return; }
+  if (nickname.length > 30) { status.textContent = 'Please use a nickname of 30 characters or fewer.'; return; }
+  if (globalResultSubmitted) { status.textContent = 'This quiz result has already been submitted from this page.'; return; }
+  if (SUPABASE_URL.includes('YOUR_PROJECT_ID') || SUPABASE_ANON_KEY.includes('YOUR_SUPABASE')) {
+    status.textContent = 'Not connected yet. Follow the SETUP instructions in the ZIP README, then add your Supabase project URL and publishable/anon key here.';
+    return;
+  }
+  const percentage = Math.round((lastScore / currentQuestions.length) * 100);
+  button.disabled = true;
+  status.textContent = 'Submitting your score…';
+  try {
+    const response = await fetch(SUPABASE_URL.replace(/\/$/, '') + '/rest/v1/quiz_results', {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ nickname, score: lastScore, total_questions: currentQuestions.length, percentage })
+    });
+    if (!response.ok) {
+      let detail = '';
+      try { detail = await response.text(); } catch (_) {}
+      throw new Error('Database rejected the submission (HTTP ' + response.status + '). Check the setup SQL and project keys.' + (detail ? ' ' + detail.slice(0,180) : ''));
+    }
+    globalResultSubmitted = true;
+    status.textContent = 'Submitted successfully! Your nickname and score are now saved in the shared results database.';
+  } catch (error) {
+    status.textContent = 'Submission failed: ' + (error && error.message ? error.message : 'network error') + ' Check your internet connection and database setup, then try again.';
+    button.disabled = false;
+  }
+});
 document.getElementById('check-liturgical-reply').addEventListener('click', function(){
   const field = document.getElementById('liturgical-reply');
   const feedback = document.getElementById('liturgical-feedback');
