@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A learning hub for Catholic altar servers: glossary, name card and quiz.">
+<title>Altar Server Hub</title>
+<style>
+:root{--navy:#10243a;--gold:#e6b85c;--cream:#fffaf0;--ink:#202a35;--muted:#667386;--white:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--cream);color:var(--ink);line-height:1.6}
+header{background:var(--navy);color:white;padding:24px 18px 34px;border-bottom:5px solid var(--gold)}
+.wrap{max-width:1050px;margin:auto;padding:0 18px}.brand{font-size:.9rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-weight:bold}
+h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.1;margin:12px 0}header p{max-width:700px;color:#e6edf5}
+nav{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}nav a{color:white;text-decoration:none;border:1px solid #526477;padding:8px 12px;border-radius:30px}nav a:hover{background:var(--gold);color:var(--navy)}
+main{padding:28px 0 55px}section{background:white;border:1px solid #e9e4d8;border-radius:16px;padding:24px;margin:0 0 22px;box-shadow:0 5px 18px #14243a0b}
+h2{color:var(--navy);margin-top:0}h3{margin-bottom:6px;color:var(--navy)}.small{color:var(--muted);font-size:.95rem}
+input,select,button{font:inherit;border-radius:9px;padding:10px 12px;border:1px solid #c9d0d8}input,select{max-width:100%;width:100%;background:white}button{cursor:pointer;background:var(--navy);color:white;border:0;font-weight:bold}button:hover{background:#23486d}.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}.field label{display:block;font-weight:bold;margin-bottom:5px}
+.searchbar{margin:10px 0 18px}.terms{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:12px}.term{border:1px solid #e4e8ed;border-radius:12px;padding:14px;background:#fff}.term h3{margin-top:0;font-size:1.05rem}.term p{margin:0}.tag{font-size:.75rem;background:#f8edcf;color:#60440d;border-radius:20px;padding:3px 8px;display:inline-block;margin-bottom:7px}
+.namecard{background:linear-gradient(135deg,#10243a,#1d4666);color:white;border:3px solid var(--gold);border-radius:16px;padding:24px;text-align:center;max-width:520px;margin:18px auto}.namecard .cross{font-size:2rem;color:var(--gold)}.namecard h3{color:white;font-size:1.7rem;margin:6px}.namecard p{margin:4px}.namecard .motto{color:#f6d98f;font-style:italic}
+.question{padding:15px;border:1px solid #e4e8ed;border-radius:12px;margin:12px 0}.question p{font-weight:bold;margin-top:0}.question label{display:block;padding:5px 0;cursor:pointer}.result{font-weight:bold;margin-top:14px}.notice{background:#fff7e2;padding:12px;border-radius:10px;color:#624a17}
+footer{background:#0b1928;color:#d9e1eb;padding:24px;text-align:center}footer a{color:#f6d98f}
+@media print{header,nav,main>section:not(#namecard-section),footer,.no-print{display:none!important}body{background:white}.namecard{margin:25px auto;print-color-adjust:exact;-webkit-print-color-adjust:exact}#namecard-section{border:0;box-shadow:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<div class="brand">Faith • Service • Reverence</div>
+<h1>Altar Server Hub</h1>
+<p>A simple learning space for altar servers. Explore liturgical terms, make your own name card, and test what you know.</p>
+<nav><a href="#glossary">Glossary</a><a href="#namecard-section">Name Card</a><a href="#quiz">Quiz</a><a href="#duties">Serving well</a></nav>
+</div></header>
+<main class="wrap">
+<section id="glossary">
+<h2>Altar-server glossary</h2>
+<p class="small">Search the words below. Practices and names can vary by parish, country, and liturgical tradition; follow your priest or serving coordinator's instructions.</p>
+<div class="searchbar"><label for="search"><strong>Find a term</strong></label><input id="search" type="search" placeholder="Try “thurible”, “alb” or “sanctuary”…"></div>
+<div id="terms" class="terms"></div>
+<p id="no-results" hidden>No matching terms. Try a shorter search.</p>
+</section>
+<section id="namecard-section">
+<h2>Create your altar-server name card</h2>
+<p class="small">Fill in your details, then print the card or save it as a PDF using your browser's print option.</p>
+<div class="row no-print">
+<div class="field"><label for="serverName">Full name</label><input id="serverName" placeholder="e.g. Divine Favour"></div>
+<div class="field"><label for="parish">Parish / church</label><input id="parish" placeholder="Your parish name"></div>
+<div class="field"><label for="role">Role</label><select id="role"><option>Altar Server</option><option>Senior Altar Server</option><option>Master of Ceremonies</option><option>Server-in-Training</option></select></div>
+<div class="field"><label for="motto">Motto (optional)</label><input id="motto" placeholder="e.g. Serve the Lord with joy"></div>
+</div>
+<div class="namecard" id="namecard">
+<div class="cross">✝</div><div>WELCOME TO THE ALTAR SERVER TEAM</div><h3 id="cardName">Your Name</h3><p id="cardRole">Altar Server</p><p id="cardParish">Your Parish</p><p class="motto" id="cardMotto">Serve with reverence and joy</p>
+</div>
+<div class="no-print" style="text-align:center"><button onclick="window.print()">Print name card / Save as PDF</button></div>
+</section>
+<section id="quiz">
+<h2>Altar-server quiz</h2>
+<p>Choose one answer for each question, then press <strong>Check my answers</strong>.</p>
+<form id="quizForm"></form>
+<button id="checkQuiz" type="button">Check my answers</button>
+<button id="resetQuiz" type="button" style="background:#526477;margin-left:6px">Try again</button>
+<div id="quizResult" class="result" aria-live="polite"></div>
+</section>
+<section id="duties">
+<h2>Serving well</h2>
+<div class="row">
+<div><h3>Be prepared</h3><p>Arrive on time, learn the order of the Mass, and check your vestments and assigned duties before the celebration.</p></div>
+<div><h3>Be reverent</h3><p>Move calmly, keep a prayerful posture, listen carefully, and avoid distracting others during the liturgy.</p></div>
+<div><h3>Follow local guidance</h3><p>Never guess what to do with sacred vessels or the liturgical books. Ask your priest, sacristan, or serving coordinator.</p></div>
+</div>
+<p class="notice"><strong>Reminder:</strong> This glossary is a learning aid, not a replacement for your parish's training. Some items are used only on particular feast days or in certain rites.</p>
+</section>
+</main>
+<footer><p>Altar Server Hub • Learn, serve, and grow in faith.</p><p class="small">Educational resource. Confirm local customs with your parish.</p></footer>
+<script>
+const glossary = [
+["Alb","Vestment","A long white garment worn by ordained ministers and, in many places, altar servers."],
+["Ambo","Church furniture","The designated place from which Scripture readings and sometimes the homily are proclaimed."],
+["Aspergillum","Liturgical item","A tool used to sprinkle holy water."],
+["Boat / Incense boat","Liturgical item","A small vessel that holds incense before it is placed in the thurible."],
+["Burse","Liturgical item","A flat, pocket-like container used to carry the corporal."],
+["Candlebearer","Role","A server assigned to carry a liturgical candle during parts of the celebration."],
+["Cassock","Clothing","A long robe worn by clergy and, in some parishes, altar servers."],
+["Chalice","Sacred vessel","The cup used for the wine that becomes the Precious Blood during the Eucharistic Prayer."],
+["Chasuble","Vestment","The outer vestment worn by a priest celebrating Mass; its colour follows the liturgical day."],
+["Ciborium","Sacred vessel","A covered vessel used to hold consecrated hosts."],
+["Corporal","Linen","A square white cloth spread on the altar beneath the sacred vessels."],
+["Cruets","Liturgical items","Small vessels that usually hold the water and wine used at Mass."],
+["Dalmatic","Vestment","The proper outer vestment of a deacon, often with sleeves."],
+["Genuflection","Gesture","A reverent bending of one knee, normally toward the Blessed Sacrament when appropriate."],
+["Lavabo","Rite / action","The washing of the priest's hands during the preparation of the gifts."],
+["Lectionary","Liturgical book","The book containing the Scripture readings appointed for Mass."],
+["Liturgical colour","Liturgy","A colour used on vestments and other items according to the season or celebration."],
+["Missal","Liturgical book","The book containing the prayers and instructions for the celebration of Mass."],
+["Pall","Linen / item","A stiff square cover placed over the chalice, where that custom is used."],
+["Paten","Sacred vessel","A small plate or shallow dish used with the bread for the Eucharist."],
+["Presider's chair","Church furniture","The chair used by the priest or bishop who presides at the liturgy."],
+["Procession","Liturgical action","An ordered movement of ministers and others, such as the entrance or recessional."],
+["Purificator","Linen","A small cloth used to wipe the chalice and other sacred vessels as directed."],
+["Roman Missal","Liturgical book","The liturgical book containing the prayers and rubrics for Mass in the Roman Rite."],
+["Sacristy","Church space","The room where vestments, vessels, and other items for worship are kept and prepared."],
+["Sanctuary","Church space","The part of the church where the altar, ambo, and celebrant's chair are located."],
+["Server","Role","A person who assists the priest and deacon during liturgical celebrations."],
+["Stole","Vestment","A long strip of vestment worn by deacons, priests, and bishops according to their order."],
+["Tabernacle","Sacred place","A secure container in which the consecrated Eucharist is reserved."],
+["Thurible / censer","Liturgical item","A metal vessel suspended on chains in which incense is burned over hot charcoal."],
+["Thurifer","Role","The server who carries and assists with the thurible."],
+["Credence table","Church furniture","A side table where items needed for the liturgy are placed before use."],
+["Liturgical year","Liturgy","The annual cycle of seasons and celebrations in the Church."],
+["Sanctus bell","Liturgical item","A bell used in some parishes at designated moments during Mass, according to local custom."],
+["Sacrarium","Church feature","A special drain, where present, used for certain sacred liquids according to Church norms."],
+["Stoup","Church feature","A vessel or basin for holy water, often placed near a church entrance."],
+["Processional cross","Liturgical item","A cross carried at the head of a liturgical procession."],
+["Bells","Liturgical item","Bells rung at particular moments in some communities, following local practice."],
+["Vigil","Liturgy","A period of prayer or a liturgical celebration kept before a feast or solemnity."],
+["Solemnity","Liturgical calendar","A high-ranking celebration in the Catholic liturgical calendar."],
+["Feast","Liturgical calendar","A liturgical celebration with a rank below a solemnity and above a memorial."],
+["Memorial","Liturgical calendar","A liturgical celebration commemorating a saint or sacred mystery."],
+["Sanctuary lamp","Church feature","A lamp indicating the reservation of the Blessed Sacrament where this custom is observed."],
+["Holy water","Sacramental","Water blessed by the Church and used in blessings and other rites."],
+["Incense","Liturgical item","A fragrant material burned during some liturgies as a sign of prayer and honour."],
+["Book of the Gospels","Liturgical book","The book containing Gospel readings, sometimes carried in procession and used for the Gospel."],
+["Bishop's crozier","Liturgical item","A pastoral staff used by a bishop."],
+["Mitre","Vestment","The ceremonial headwear worn by bishops and certain other prelates."],
+["Humeral veil","Vestment","A long cloth worn over the shoulders and hands when carrying the monstrance in certain rites."],
+["Monstrance","Sacred vessel","A vessel used to display the Blessed Sacrament for adoration and benediction."]
+];
+const termBox=document.getElementById('terms');
+function renderTerms(filter=''){termBox.innerHTML='';let matches=glossary.filter(t=>t.join(' ').toLowerCase().includes(filter.toLowerCase()));document.getElementById('no-results').hidden=matches.length>0;matches.forEach(t=>{let el=document.createElement('article');el.className='term';el.innerHTML='<span class="tag"></span><h3></h3><p></p>';el.querySelector('.tag').textContent=t[1];el.querySelector('h3').textContent=t[0];el.querySelector('p').textContent=t[2];termBox.appendChild(el)})}
+renderTerms();document.getElementById('search').addEventListener('input',e=>renderTerms(e.target.value));
+[['serverName','cardName','Your Name'],['parish','cardParish','Your Parish'],['role','cardRole','Altar Server'],['motto','cardMotto','Serve with reverence and joy']].forEach(([input,out,placeholder])=>{document.getElementById(input).addEventListener('input',e=>document.getElementById(out).textContent=e.target.value.trim()||placeholder)});
+const questions=[
+{q:'Which book contains the prayers and instructions for the celebration of Mass?',opts:['Lectionary','Roman Missal','Book of the Gospels','Hymnal'],a:1,why:'The Roman Missal contains the prayers and rubrics for Mass.'},
+{q:'What is the ambo primarily used for?',opts:['Keeping vestments','Proclaiming Scripture readings','Washing the priest’s hands','Holding incense'],a:1,why:'The ambo is the designated place for proclaiming Scripture readings.'},
+{q:'Which item is used to hold incense while it is burned?',opts:['Ciborium','Paten','Thurible','Cruet'],a:2,why:'The thurible, or censer, is used to burn incense.'},
+{q:'What is the credence table?',opts:['A side table for items used during the liturgy','The main altar','The priest’s chair','A book of readings'],a:0,why:'The credence table holds items needed for the liturgy.'},
+{q:'Which cloth is spread on the altar beneath the sacred vessels?',opts:['Stole','Corporal','Alb','Burse'],a:1,why:'The corporal is the square cloth placed on the altar beneath the sacred vessels.'},
+{q:'Who is called a thurifer?',opts:['A server carrying the processional cross','A server assisting with the thurible','The person reading the first reading','The person ringing every church bell'],a:1,why:'A thurifer carries and assists with the thurible.'},
+{q:'What is the sacristy?',opts:['A room for preparing and keeping liturgical items','The place where the congregation sits','The top of the ambo','The church entrance font'],a:0,why:'The sacristy is where vestments, vessels, and other worship items are prepared and kept.'},
+{q:'What does a genuflection normally involve?',opts:['Bowing the head only','Bending one knee reverently','Lifting a sacred vessel','Walking in procession'],a:1,why:'A genuflection is a reverent bending of one knee.'},
+{q:'True or false: A ciborium is used to hold consecrated hosts.',opts:['True','False'],a:0,why:'A ciborium is a covered vessel used to hold consecrated hosts.'},
+{q:'True or false: The liturgical colour is always the same throughout the year.',opts:['True','False'],a:1,why:'Liturgical colours vary according to the season or celebration.'}
+];
+const quizForm=document.getElementById('quizForm');
+questions.forEach((q,i)=>{let d=document.createElement('div');d.className='question';let p=document.createElement('p');p.textContent=(i+1)+'. '+q.q;d.appendChild(p);q.opts.forEach((opt,j)=>{let l=document.createElement('label');let r=document.createElement('input');r.type='radio';r.name='q'+i;r.value=j;r.style.width='auto';r.required=true;l.appendChild(r);l.append(' '+opt);d.appendChild(l)});quizForm.appendChild(d)});
+document.getElementById('checkQuiz').addEventListener('click',()=>{let score=0,answered=0;let feedback=[];questions.forEach((q,i)=>{let selected=quizForm.querySelector('input[name="q'+i+'"]:checked');if(selected){answered++;if(Number(selected.value)===q.a)score++;else feedback.push((i+1)+'. '+q.why)}else feedback.push((i+1)+'. Please answer this question.');});let out=document.getElementById('quizResult');if(answered<questions.length){out.textContent='You answered '+answered+' of '+questions.length+'. Answer every question to see your score.';return}out.innerHTML='';let headline=document.createElement('p');headline.textContent='Your score: '+score+' / '+questions.length;out.appendChild(headline);feedback.forEach(f=>{let p=document.createElement('p');p.textContent=f;out.appendChild(p)})});
+document.getElementById('resetQuiz').addEventListener('click',()=>{quizForm.reset();document.getElementById('quizResult').textContent=''});
+</script>
+</body>
+</html>
